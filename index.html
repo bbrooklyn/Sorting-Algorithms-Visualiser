@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"
+        integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Tailwind</title>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>Sorting Algorithm Visualiser</h1>
+        <h3>By Brooklyn</h3>
+    </div>
+
+    <div class="settings">
+        <div class="marks">
+            <div class="wrapper">
+
+                <ul class="algos">
+                    <li><button class="algo_button" id="bubble">Bubble sort</button></li>
+                    <li><button class="algo_button" id="merge">Merge sort</button></li>
+                    <li><button class="algo_button" id="insert">Insertion sort</button></li>
+                    <li><button class="algo_button" id="selection">Selection sort</button></li>
+                </ul>
+            </div>
+
+            <div class="wrapper">
+                <button class="step" id="previous_step">
+                    < Previous step</button>
+                        <span id="step_number">1</span>
+                        <button class="step" id="next_step">Next step ></button>
+            </div>
+
+        </div>
+    </div>
+    <div id="visualiser"></div>
+    <span class="stamp">
+        <p>Created by Brooklyn</p>
+        <p>&copy; 2022</p>
+    </span>
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>
