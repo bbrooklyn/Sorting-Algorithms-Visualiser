@@ -2,14 +2,18 @@
 const ceil = 10;
 const testing = false;
 const global_font = "Source Code Pro";
+const column_width = 100;
+const array_whitespace = 3;
 
 // Dynamic
 var array_string = "[]";
 var selected_button = undefined;
 var step = 0;
+var steps = [];
 
 // Populate array with random numbers
 function generate_array() {
+  steps = [];
   var length = 5;
 
   var array = [];
@@ -19,7 +23,7 @@ function generate_array() {
     var number = Math.ceil(random * ceil);
     array.push(number);
   }
-  array_string = array.join(", ");
+  array_string = array.join("   ");
   return array;
 }
 
@@ -43,8 +47,6 @@ var column_array = () => {
   var r = 48;
   var g = 116;
   var b = 184;
-
-  var column_width = 100;
 
   v = width / 2 - (column_width * array.length) / 2;
 
@@ -73,17 +75,48 @@ var column_array = () => {
     b -= b / array.length;
   });
 };
-
+// Step representation constants
+const highlight_padding = 20;
+const array_text_y = 50;
 // Sorting Algorithms
 
 function bubble_sort(array) {
   column_array();
+  textSize(25);
+  var render_step = (array) => {
+    var first_number = 0;
+    var second_number = 1;
+    var compare_text = `Is ${array[first_number]} greater than ${array[second_number]}`;
 
+    var highlight_array_number = (array_index, array, r, g, b) => {
+      var start = width / 2 - textWidth(array_string) / 2;
+      var x = array.slice(0, array_index).join("").length + array_index * 3;
+      x = start + textWidth(array_string.slice(0, x)) - highlight_padding / 2;
+      var y = array_text_y - 10 - highlight_padding / 2;
+      var x_width = textWidth(String(array[array_index])) + highlight_padding;
+      var y_height = 20 + highlight_padding;
+      fill(r, g, b);
+      stroke(r, g, b);
+      rect(x, y, x_width, y_height);
+    };
+
+    var compare_number_text = (compare_text) => {
+      fill(0);
+      stroke(255);
+      textStyle(BOLD);
+      text(compare_text, width / 2, array_text_y + 60);
+    };
+
+    highlight_array_number(first_number, array, 26, 192, 198);
+    highlight_array_number(second_number, array, 69, 230, 69);
+    compare_number_text(compare_text);
+  };
+
+  render_step(array);
   fill(0);
   stroke(255);
-  textSize(25);
 
-  text(array_string, width / 2, 50);
+  text(array_string, width / 2, array_text_y);
 }
 
 function selection_sort(array) {}
