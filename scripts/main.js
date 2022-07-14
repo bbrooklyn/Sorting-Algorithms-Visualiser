@@ -86,8 +86,7 @@ function bubble_sort(array) {
   var render_step = (array) => {
     var first_number = 0;
     var second_number = 1;
-    var compare_text = `Is ${array[first_number]} greater than ${array[second_number]}`;
-
+    
     var highlight_array_number = (array_index, array, r, g, b) => {
       var start = width / 2 - textWidth(array_string) / 2;
       var x = array.slice(0, array_index).join("").length + array_index * 3;
@@ -100,16 +99,29 @@ function bubble_sort(array) {
       rect(x, y, x_width, y_height);
     };
 
-    var compare_number_text = (compare_text) => {
+    var compare_number_text = (num1,num2) => {
+      var compare_text = `Is ${num1} greater than ${num2}: `;
+
       fill(0);
       stroke(255);
-      textStyle(BOLD);
-      text(compare_text, width / 2, array_text_y + 60);
+      
+      var truth = num1 > num2;
+      var truth_x = (width / 2) + textWidth(compare_text) / 2;
+      
+      text(compare_text, (width / 2) - textWidth(truth)/2, array_text_y + 60); // Draw comparison text "is num1 greater than num2"
+      if(truth){
+        fill(0,255,0)
+      }
+      else {
+        fill(255,0,0)
+      }
+
+      text(truth, truth_x, array_text_y + 60); // Draw truth text concatinated to draw comparison text "true" or "false"
     };
 
     highlight_array_number(first_number, array, 26, 192, 198);
     highlight_array_number(second_number, array, 69, 230, 69);
-    compare_number_text(compare_text);
+    compare_number_text(array[first_number],array[second_number]);
   };
 
   render_step(array);
